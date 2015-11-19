@@ -10,6 +10,8 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
+            System.Console.WriteLine("To close press any key.");
+            System.Console.ReadKey();
         }
     }
 }
