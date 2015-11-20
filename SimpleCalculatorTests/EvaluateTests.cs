@@ -1,69 +1,108 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SimpleCalculator;
 
 namespace SimpleCalculatorTests
 {
-    /// <summary>
-    /// Summary description for EvaluateTests
-    /// </summary>
+
     [TestClass]
-    public class EvaluateTests
+    public class EvaluateTest
     {
-        public EvaluateTests()
+        [TestMethod]
+        public void EvaluateEnsureEvaluateInstance()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            Evaluate newSession = new Evaluate();
+            Assert.IsNotNull(newSession);
         }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void EvaluateInputAddition()
         {
-            //
-            // TODO: Add test logic here
-            //
+            string input = "7+8";
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(15, newSession.EvaluateInput(input));
+        }
+
+        [TestMethod]
+        public void EvaluateInputConstantAddition()
+        {
+            string input = "a+5";
+            Constant constant = new Constant();
+            constant.AddConstant('a', 1);
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(6, newSession.EvaluateInput(input, constant));
+        }
+
+        [TestMethod]
+        public void EvaluateInputSubtract()
+        {
+            string input = "7-8";
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(-1, newSession.EvaluateInput(input));
+        }
+
+        [TestMethod]
+        public void EvaluateInputConstantSubtract()
+        {
+            string input = "a-8";
+            Constant constant = new Constant();
+            constant.AddConstant('a', 7);
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(2, newSession.EvaluateInput(input, constant));
+        }
+
+        [TestMethod]
+        public void EvaluateInputMultiply()
+        {
+            string input = "1*8";
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(8, newSession.EvaluateInput(input));
+        }
+
+        [TestMethod]
+        public void EvaluateInputConstantMultiply()
+        {
+            string input = "a*8";
+            Constant constant = new Constant();
+            constant.AddConstant('a', 1);
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(5, newSession.EvaluateInput(input, constant));
+        }
+
+        [TestMethod]
+        public void EvaluateInputDivision()
+        {
+            string input = "10/2";
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(5, newSession.EvaluateInput(input));
+        }
+
+        [TestMethod]
+        public void EvaluateInputConstantDivision()
+        {
+            string input = "a/5";
+            Constant constant = new Constant();
+            constant.AddConstant('a', 10);
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(2, newSession.EvaluateInput(input, constant));
+        }
+
+        [TestMethod]
+        public void EvaluateInputModulo()
+        {
+            string input = "1%5";
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(1, newSession.EvaluateInput(input));
+        }
+
+        [TestMethod]
+        public void EvaluateInputConstantModulo()
+        {
+            string input = "a%5";
+            Constant constant = new Constant();
+            constant.AddConstant('a', 11);
+            Evaluate newSession = new Evaluate();
+            Assert.AreEqual(1, newSession.EvaluateInput(input, constant));
         }
     }
 }
